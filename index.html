@@ -1,0 +1,393 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+    crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier-Leaflet/0.2.6/oms.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css"/>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    
+    
+    <style>
+        * , *:before, *:after{ 
+            box-sizing:border-box; 
+            -moz-box-sizing:border-box; 
+            -webkit-box-sizing:border-box; 
+            -ms-box-sizing:border-box;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #wrapper {
+            width: 100vw;
+            height: 100vh;
+        }
+        #left {
+            width: 35%;
+            height: 100%;
+            float: left;
+            background: black;
+            color: white;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+        .container {
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .container::-webkit-scrollbar { 
+            display: none;  /* Safari and Chrome */
+        }
+        #map {
+            height: 100vh;
+            margin-left: 35%;      
+        }
+        section {
+            height: 100vh;
+            scroll-snap-align: start;
+            position: relative;
+            padding: 30px;
+            font-size: larger;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            
+            flex-direction: column;
+        }
+        #controls {
+            position: absolute;
+            background-color: black;
+            color: white;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            z-index: 400;
+        }
+    </style>
+</head>
+ <body style="margin: 0;">
+    <div id ="wrapper">
+        <div id="left" class="container"> 
+            <section id="section0">
+                <h1>BENGAL SINCE 1900</h1><h3>a geography in verse</h3><br><p>Rajrishi Das<br><br>ENGL 4732 Final Project</p><br><p><i>Scroll down over here to begin.</i><br><i>Or, use your mouse to explore the map.</i></p>
+            </section>
+            <section id="section1">
+                In 1900, the Indian subcontinent was under British rule.<br>Its national borders looked like this:
+            </section>
+            <section id="section2">
+                The region of Bengal was united into a single province called the Bengal Presidency.<br>
+                <br>With more than 78 million people (out of a total population of 300 million), the Bengal Presidency was the most populous province in the British Raj, and home to its capital city, Calcutta (now Kolkata).
+            </section>
+            <section id="section3">
+                <h1>1750-1900: Bengali Renaissance</h1>
+                <br>Over the course of the 19th century, Kolkata was the epicenter of the Bengali Renaissance -- a blooming of Bengali arts, literature, philosophy, social reform, political organization. The city, with its universities, ports, and imperial bureacracies, became an intellectual metropole, drawing scholars and artists from all over Bengal.
+                <br><br>Given Kolkata's status as the center of British imperial power, and the fact that the Bengali Renaissance was dominated by wealthy upper-caste Bengali Hindus, for whom English-language schooling and employment in imperial bureacracies were more accessible, much of the Bengali poetry of the 19th century was highly influenced by English and other Western poetic traditions.<br>
+            </section>
+            <section id="section4">
+                <p>The Renaissance poet <b>Michael Madhusan Dutt,</b> for example, is considered the father of the Bengali sonnet; in the dedicatory letter accompanying his first attempt at the sonnet form, he wrote to his friend Rajnaryan Basu, "What say you to this, my good friend? In my humble opinion, if cultivated by men of genius, our sonnet would in time rival even the Italian." <br><br>The Western influence in his work is also clear from the fact that in the early years of his career, Dutt wrote exclusively in English. After a stint as a court interpreter in Calcutta from 1858-62, he began to write poetry in his native Bangla -- but attempted, even then, to implement English-style blank verse in the language. Although he was born in rural East Bengal, he is buried in Kolkata:</p>
+            </section>
+            <section id="section5">
+                <h1>Mother Bengal</h1>
+                <p>Despite his considerable debt to Western tradition, Dutt celebrated Bengal profusely in his work, as did other Bengali Renaissance poets.
+                <br><br>His self-written epitaph invokes the figure of <b>Mother Bengal:</b> a proto-deific personification of Bengal that emerged during the Renaissance, and later became an organizing symbol for various Bengali nationalist movements in the 20th century.
+                <br><br>Mother Bengal is rarely depicted visually; she is a discursive figure, invoked imaginatively through of poetry and song, similar to a Muse, or a nation.
+            </section>
+            <section id="section6">
+                <h1>Rivers</h1>
+                <br><br>
+                <p>Dutt's most famous sonnet, "Kapatakkha River," apostrophizes a river near his birthplace in Eastern Bengal. It employs one of Bengali poetry's characteristic motifs: invoking one of Bengal's <b>rivers</b> as a <b>metonym</b> for Bengal writ large. We can discern, in this poem, the strength of the association between river-metonymy and the "Mother Bengal" motif: "Many a river I have seen on earth; / But which can quench my thirst the way you do? / You're the flow of milk in my homeland's breasts."
+                    <br><br>
+                    As we'll soon see, the Ganga (or Ganges) is the river most frequently invoked for this purpose. But Bengal is home to several major river systems, as well as the world's largest river delta; smaller rivers, such as the Kapatakkha, are frequent poetic symbols as well (especially as homages to Bengal's rural areas).</p>
+            </section>
+            <section id="section7">
+                <h1>"Vande Mataram," by Bankim Chandra Chatterjee (1882)</h1>
+                <br><br>The Bengali Renaissance is widely understood, today, as the ur-text behind the revolutionary decolonial movements of the 20th century. One visible manifestation of this lies in Bankim Chandra Chatterjee's translation of Mother Bengal to Mother India (as well as Ma Durga, a Bengali Hindu goddess) in his 1882 poem "Vande Mataram."
+                <br><br>"Vande Mataram," originally published in a novel, became the iconic text of the Indian nationalist movements in the early 20th century. It first came to national political prominence when Rabindranath Tagore recited it before Congress in 1896; in the 20th century, it became popular as a revolutionary marching song, to the point that in 1938, the British imperial government deemed it a crime, punishable by imprisonment, to sing or recite "Vande Mataram" under any circumstances. This, of course, only made the song more powerful.
+            </section>
+            <section id="section8">
+                <h1>1905: FIRST PARTITION</h1>
+                <p>In response to the burgeoning anti-imperial fervor, British administrators, led by Lord Curzon, Viceroy of India, moved in 1905 to divide Bengal between its largely-Hindu western and largely-Muslim eastern areas.<br><br>The provincial borders of Bengal went from this...<br><br>(scroll down)</p>
+            </section>
+            <section id="section9">
+                <h1>1905: FIRST PARTITION</h1>
+                <p>...to this:<br><br>(Note: the boundaries on this slide are somewhat inaccurate due to the scarcity of relevant geoJSON data available online, and my present unfamiliarity with advanced GIS software. However, they are usefully inaccurate, as we shall soon see. For now, note that the region of Assam was included in the eastern province.)</p>
+            </section>
+            <section id="section10">
+                <h1>"Amar Sonar Bangla (My Golden Bangla)," by Rabindranath Tagore</h1>
+                <p>Although the precise terms of the 1905 Partition lasted for only 6 years, its underlying strategy of divide-and-conquer was neither understated nor acceptable to Bengalis - especially not Bengali nationalists.
+                <br><br>The First Partition of Bengal led to a widespread popular outcry, and while religious and political divisions deepened considerably (Muslim separatist movements, e.g, began to emerge with newfound energy during this 6-year period), the idea of a <i>culturally</i>-united Bengal began to animate much of the artistic production of the period.
+                <br><br>In 1905, the legendary Bengali polymath Rabindranath Tagore composed the text of "Amar Sonar Bangla," an ode to Mother Bengal that, in celebrating several of the region's disparate landscapes, from rice paddy fields to banyan tree forests, pointedly refuses to recognizes the communal East/West division imposed by the British.
+                <br><br>"Amar Sonar Bangladesh" has been the national anthem of Bangladesh since its establishment as an independent nation in 1971.
+                </p>
+            </section>
+            <section id="section11">
+                <h1>"Bharoto Bhagyo Bidhata (Dispenser of India's Destiny)," by Rabindranath Tagore</h1>
+                <p>Tagore is the only person to have written the national anthems of two separate nations: "Amar Sonar Bangla," the national anthem of Bangladesh, and "Jana Gana Mana," the national anthem of India. The latter was originally written as a hymn in Sanskritized Bengali called "Bharoto Bhagyo Bidhata"; the first stanza, translated into Hindi, consitutes the Indian national anthem today.
+                <br><br>Notice the themes of religious pluralism and regional unity between East and West in the second stanza. In light of British attempts to stoke communal divisions in the subcontinent, pluralism emerged as a prominent theme in the work of Tagore, and in the messaging of many -- but not all -- prominent decolonial and nationalist political organizations.
+                </p>
+            </section>
+            <section id="section12">
+                <h1>"Bidrohi (The Rebel)," by Kazi Nazrul Islam</h1>
+                <p>Alongside Tagore, Kazi Nazrul Islam is considered the father of modern Bengali poetry. The two figures share some thematic overlap, most clearly seen in their poetics of pluralism -- but where Tagore's pluralism was always checked by a small-c conservatism (he denounced nationalism, for instance, nearly as severely as British imperialism), Nazrul's was more wide-ranging and famously radical.
+                <br><br>His 1921 poem "Bidrohi" earned him the nickname "Bidrohi Kobi" ("Rebel Poet"), and was highly influential not only during the Indian independence movements of his own period, but the Bangladeshi nationalist movements later in the century, that culminated in the 1971 Bangladesh Liberation War. Comparable to Whitman's "Song of Myself" in its structure (notice the anaphoric, pluralistic "I"), its ambition, and its length, only an excerpt of its reproduced here.</p>
+            </section>
+            <section id="section13">
+                <h1>Nazrul's syncretism (example 1/2)</h1>
+                <p>A major part of Nazrul's project -- and, for thinkers like Amartya Sen and Rabindranath Tagore, a major part of the ethos of Bengal -- is the expression of religious <b>syncretism</b>. <br><br>This manifests in Nazrul's work both explicitly -- see his poems "Daridro (Poverty)" -- and implicitly: Nazrul (re)introduced terms from Arabic, Farsi, and Urdu into the Bengali language, crafting a highly influential idiom whose cosmopolitanism resisted upper caste and Hindu nationalist attempts to inorganically sanskritze Bangla poetic diction.</p>
+            </section>
+            <section id="section14">
+                <h1>Nazrul's syncretism (example 2/2)</h1>
+            </section>
+            <section>
+                <h1>Works Cited</h1> 
+            </section>
+        </div>
+        <div id="map"></div>
+    </div>
+    <script src="data.js"></script>
+    <script>
+    var map = L.map('map', {
+        zoomControl:false, maxZoom:10, minZoom:3, center: DHAKA, zoom: DEFAULTZOOM,
+    });
+    var Stadia_AlidadeSmoothDark = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+        maxZoom: 20,
+        attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+    });
+
+    var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        maxZoom: 17,
+        attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+    });
+
+    var Stamen_Terrain = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}', {
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        subdomains: 'abcd',
+        minZoom: 0,
+        maxZoom: 18,
+        ext: 'png'
+    });
+
+    map.addLayer(Stamen_Terrain);
+
+
+    var clusterGroup = L.markerClusterGroup();
+    var markerHashmap = {};
+    //var DATASET = [{coords: KOLKATA, title: "Poem", author: "Author Authorson", year: "1950"}, {coords: KOLKATA, title: "Poem 2", author: "Author Authorson II", year: "2000"}, {coords: [23.75973, 90.41213], title: "Poem 3", author: "Author Authorson III", year: "2022"}];
+    for (var i = 0; i < DATASET.length; i ++) {
+        element = DATASET[i]
+        loc = new L.LatLng(element.coords[0], element.coords[1]);
+        var popup = L.popup({maxHeight: 400})
+        .setContent(`<h3>${element.title}, by ${element.author} (${element.year})</h3><p>${element.text}</p>`);
+        var marker = new L.Marker(loc).bindPopup(popup);
+        markerHashmap[element.title] = marker;
+        clusterGroup.addLayer(marker);
+    }
+    map.addLayer(clusterGroup);
+    //clusterGroup.addTo(map);
+
+
+/*
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '../geojson/world_1900.geojson');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+        if (xhr.status !== 200) return
+        L.geoJSON(xhr.response, {style: function (feature) {
+            var fillColor = 'rgba(0,0,200,0.5)';
+            if (feature.properties.NAME === "India") {
+                return {
+                    fillOpacity: 0.55,
+                    fillColor: 'rgba(200,0,0,0.5)',
+                    //color: 'rgba(0,0,0,0)'
+                };      
+            };
+            
+        return {
+            fillOpacity: 0.2,
+            fillColor: fillColor
+            //color: 'rgba(0,0,0,0)'
+        };
+    },}).addTo(map);
+    };
+    xhr.send();
+*/
+
+    const STYLE = {fillOpacity: 0.2, fillColor: '#fffff'}
+    
+    var layer1900 = addData(L.geoJSON(null, {style: STYLE}), "geojson/world_1900.geojson");
+    var layer1947 = addData(L.geoJSON(null, {style: STYLE}), "geojson/world_1945.geojson");
+    
+    var layer1960 = addData(L.geoJSON(null, {style: STYLE}), "geojson/world_1960.geojson");
+    var layer1994 = addData(L.geoJSON(null, {style: STYLE}), "geojson/world_1994.geojson");
+    
+    var layerGroup = new L.LayerGroup();
+    layerGroup.addTo(map);
+    
+    document.querySelector("#map").addEventListener("scroll", (e) => {
+        console.log("zoom: " + map.getZoom());
+    });
+
+    document.querySelector("#left").addEventListener("scroll", (e) => {
+        var a = e.currentTarget.scrollTop;
+        var b = e.currentTarget.scrollHeight - e.currentTarget.clientHeight;
+        var c = a / b;
+        
+        //console.log(e.currentTarget.scrollTop);
+        //console.log(b);
+        //console.log(c);
+        var numSections = e.currentTarget.getElementsByTagName('section').length;
+        var currentSection = Math.floor(c * numSections);
+        console.log(currentSection);
+
+
+        if (currentSection == 0) {
+            map.flyTo(new L.LatLng(CENTER[0], CENTER[1]), 6);
+            clearLayers();
+            //layerGroup.addLayer(layer1900);
+        }
+        else if (currentSection == 1) {
+            clearLayers();
+            layerGroup.addLayer(layer1900);
+            map.flyTo(new L.LatLng(CENTER[0], CENTER[1]), 4);
+        }
+        else if (currentSection == 2) {
+            clearLayers();
+            layerGroup.addLayer(layer1900);
+            map.flyTo(new L.LatLng(CENTER[0], CENTER[1]), 6.5);
+            //layerGroup.addLayer(layer1947);
+        }
+        else if (currentSection == 3) {
+            clearLayers();
+            layerGroup.addLayer(layer1900);
+            map.flyTo(new L.LatLng(KOLKATA[0], KOLKATA[1]), 8);
+            //layerGroup.addLayer(layer1947);
+        }
+        else if (currentSection == 4) {
+            clearLayers();
+            layerGroup.addLayer(layer1900);
+            //map.flyTo(new L.LatLng(CENTER[0], CENTER[1]), 6);
+            openMarker("self-written epitaph");
+            //markers[0].openPopup();
+            //layerGroup.addLayer(layer1947);
+        }
+        else if (currentSection == 5) {
+            clearLayers();
+            layerGroup.addLayer(layer1900);
+            
+            openMarker("self-written epitaph");
+            //map.flyTo(new L.LatLng(CENTER[0], CENTER[1]), 6.5);
+        }
+        else if (currentSection == 6) {
+            //layerGroup.addLayer(layer1960);
+            clearLayers();
+            layerGroup.addLayer(layer1900);
+            openMarker("Kapatakkha River");
+            //map.flyTo(new L.LatLng(DHAKA[0], DHAKA[1]), DEFAULTZOOM+2);
+        }
+        else if (currentSection == 7) {
+            clearLayers();
+            layerGroup.addLayer(layer1900);
+            //map.flyTo(new L.LatLng(CENTER[0], CENTER[1]), 4);
+            openMarker("Vande Mataram")
+            //openMarker();   
+        }
+        else if (currentSection == 8) {
+            clearLayers();
+            layerGroup.addLayer(layer1900);
+            map.flyTo(new L.LatLng(CENTER[0], CENTER[1]), 6.5);   
+        }
+        else if (currentSection == 9) {
+            clearLayers();
+            layerGroup.addLayer(layer1947);
+            map.flyTo(new L.LatLng(CENTER[0], CENTER[1]), 6.5);   
+        }
+        else if (currentSection == 10) {
+            clearLayers();
+            //layerGroup.addLayer(layer1947);
+            openMarker("Amar Sonar Bangla");
+        }
+        else if (currentSection == 11) {
+            clearLayers();
+            //layerGroup.addLayer(layer1947);
+            openMarker("Bharoto Bhagyo Bidhata");
+        }
+        else if (currentSection == 12) {
+            clearLayers();
+            layerGroup.addLayer(layer1947);
+            openMarker("Bidrohi (excerpt)");
+        }
+        else if (currentSection == 13) {
+            clearLayers();
+            layerGroup.addLayer(layer1947);
+            openMarker("Daridro (excerpt)");
+        }
+        else if (currentSection == 14) {
+            clearLayers();
+            layerGroup.addLayer(layer1947);
+            openMarker("Durgom Giri Kantar Moru (excerpt)");
+        }
+        else if (currentSection == numSections - 1) {
+            //layerGroup.addLayer(layer1994);
+            clearLayers();
+            map.flyTo(new L.LatLng(CENTER[0], CENTER[1]), DEFAULTZOOM - 2);
+        }
+        
+    });
+
+    function clearLayers(){
+        layerGroup.removeLayer(layer1900);
+        layerGroup.removeLayer(layer1947);
+        layerGroup.removeLayer(layer1960);
+        layerGroup.removeLayer(layer1994);
+    }
+
+    function openMarker(marker_num) { // later: access markers by condition
+        console.log(markerHashmap);
+        /*
+        var group = a.layer.getAllChildMarkers();
+        group.forEach(function(m) {
+            markers.zoomToShowLayer(m, function() {
+            m.openPopup();
+            });
+        });
+        */
+
+        // hashmap lookup
+        var marker = markerHashmap[marker_num];
+        console.log(marker);
+
+        clusterGroup.zoomToShowLayer(marker, function() {
+            marker.openPopup();
+        });
+
+        // Sanity check
+        if (!marker) { return; }
+        console.log("hello");
+        
+        // What cluster is this marker in?
+        var cluster = clusterGroup.getVisibleParent(marker);
+        
+        // Is the marker really in a cluster, or visible standalone?
+        if (cluster) {
+            // It's in a cluster, do something about its cluster.
+            console.log("cluster");
+        } else {
+            // It's not in a cluster but directly in the map, do something about it.
+            console.log("marker");
+            //marker.openPopup();
+        }
+    }
+
+    
+
+    </script>
+
+ </body>
+</html>
