@@ -223,10 +223,6 @@
                 <h1>Explore!</h1>
                 <p>While there is much I have not yet touched on -- e.g. the Naxalbari uprising of 1967 -- I don't have the time or energy to continue on this project any longer. However, there are more poems on the map than I have covered in writing -- click around to explore! <br><br> In future version of this application, I plan to introduce visual filtering by theme, period, gender, etc.</p>
             </section>
-            <section>
-                <h1>Works Cited</h1>
-                
-            </section>
         </div>
         <div id="map"></div>
     </div>
@@ -478,17 +474,12 @@
             layerGroup.addLayer(layer1960);
             openMarker("Give Me Food, Bastard");
         }
-        else if (currentSection == 28) {
+        else if (currentSection >= 28) {
             clearLayers();
             layerGroup.addLayer(layer1994);
+            map.flyTo(new L.LatLng(DHAKA[0], DHAKA[1]), 6);
             //openMarker("Sin");
-        }
-        else if (currentSection >= numSections - 1) {
-            //layerGroup.addLayer(layer1994);
-            clearLayers();
-            map.flyTo(new L.LatLng(CENTER[0], CENTER[1]), DEFAULTZOOM - 2);
-        }
-        
+        }        
         
     });
 
