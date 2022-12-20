@@ -205,16 +205,27 @@
                 <p>In response to the genocide, a Bengali nationalist guerrilla group called Mukti Bahini launched a counteroffensive against the Pakistani military. The war between Bengali nationalists and East Pakistani military forces lasted from March to December 1971, with India joining two weeks before its conclusion as an ally of the former. The nationalists won the war (which claimed hundreds of thousands or even millions of lives), and established the independent nation of Bangladesh on December 16, 1971.</p>
             </section>
             <section id="section25">
-                <h1>"Shadhinota tumi" (Liberation), by Shamsur Rahman</h1>
+                <h1>"Shadhinota tumi" (Liberation), by Shamsur Rahman (1971)</h1>
                 <p>Already an established poet by 1971, Shamsur Rahman became the poetic voice of the liberation movement during and after the war. He wrote and published "Shadhinota tumi (Liberation)" in 1971, and it became an anthem for freedom fighters.
                     <br><br>Notice the poem's definition of freedom as "Rabi Thakur’s timeless poetry and everlasting lyrics ... Kazi Nazrul, his willowy mane swaying, / rapturous with the joy of creation, a great man ... / the radiant gathering at Shahid Minar on the / immortalized February 21."
                 </p>
             </section>
             <section id="section26">
-                <h1>"Roaring Liberation," by Shamsur Rahman</h1>
+                <h1>"Roaring Liberation," by Shamsur Rahman (1972)</h1>
+            </section>
+            <section id="section27">
+                <h1>"Give Me Food, Bastard" by Rafiq Azad (1974)</h1>
+                <p>In 1974, three years after Bangladesh achieved independence, the Brahmaputra River flooded, causing one of the worst famines of the 20th century. During the famine, Rafiq Azad published the beautiful and highly controversial poem "Give Me Food, Bastard," which concludes on a stunning evocation of the power of a nation's oppressed: "Give me food, bastard / Or I'll eat up the very map."
+                    <br>The adminstration of Sheikh Rahman, the founding leader of Bangladesh, strongly censured the poem as an attack on the nation's government.
+                </p>
+            </section>
+            <section id="section28">
+                <h1>Explore!</h1>
+                <p>While there is much I have not yet touched on -- e.g. the Naxalbari uprising of 1967 -- I don't have the time or energy to continue on this project any longer. However, there are more poems on the map than I have covered in writing -- click around to explore! <br><br> In future version of this application, I plan to introduce visual filtering by theme, period, gender, etc.</p>
             </section>
             <section>
-                <h1>Works Cited</h1> 
+                <h1>Works Cited</h1>
+                
             </section>
         </div>
         <div id="map"></div>
@@ -459,8 +470,18 @@
         }
         else if (currentSection == 26) {
             clearLayers();
-            layerGroup.addLayer(layer1947);
+            layerGroup.addLayer(layer1960);
             openMarker("Roaring Liberation");
+        }
+        else if (currentSection == 27) {
+            clearLayers();
+            layerGroup.addLayer(layer1960);
+            openMarker("Give Me Food, Bastard");
+        }
+        else if (currentSection == 28) {
+            clearLayers();
+            layerGroup.addLayer(layer1994);
+            //openMarker("Sin");
         }
         else if (currentSection >= numSections - 1) {
             //layerGroup.addLayer(layer1994);
